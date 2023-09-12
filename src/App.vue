@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
   <nav>
-    <ul>
+    <ul class="HeaderMain">
       <li><router-link to="/"> Home</router-link></li>
       |
       <li><router-link to="/about">About</router-link></li>
@@ -50,7 +50,6 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 ul {
-  display: flex;
   background-color: black;
   padding: 0;
   height: 50px;
@@ -61,6 +60,11 @@ ul > li {
   color: white;
   margin: 0 20px;
 }
+
+.HeaderMain {
+  display: flex;
+}
+
 .fade-enter {
   opacity: 0;
 }
@@ -81,7 +85,7 @@ ul > li {
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in;
 }
 
 .slide-fade-leave-to {

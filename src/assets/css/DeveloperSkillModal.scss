@@ -33,7 +33,6 @@ $porcent-vue: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background-color: $color-black;
 }
 
@@ -44,7 +43,6 @@ $porcent-vue: 2;
   flex-wrap: wrap;
   min-width: 270px;
   width: 100%;
-  min-height: 100%;
 }
 
 .progressbar {

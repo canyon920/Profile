@@ -20,57 +20,54 @@ export default class HomeView extends Vue {
   <div class="about">
     <ProfileComponent />
     <div>
+      <h3>Carrer</h3>
       <ul>
         <li>
-          <h3>{{ Projects[0] }} [프리랜서]</h3>
-          <p>2023.08.07 ~ 2023.09.06</p>
-          <h4>네이버 출근 [정자]</h4>
-          <div>Vue 와 Vue-Flow 를 통한 그래프 서비스를 구현 했습니다.</div>
-          <br />
-          <div>
-            <img src="../assets/VirtualFlow.png" />
+          <div style="display: flex; justify-content: center">
+            <div>
+              {{ Projects[0] }} &nbsp; <br />2023.08.07 ~ 2023.09.06 <br />
+              <br />
+              <bold>
+                업무 경험 <br /><br />
+                네이버와 에픽게임즈에서 투자한 게임에 관련된 프론트 웹사이트의
+                <br />
+                프론트엔드를 담당 했습니다.
+              </bold>
+            </div>
           </div>
+          <br /><br /><br />
         </li>
-        <br />
+        <li>
+          <div style="display: flex; justify-content: center">
+            <div>
+              <div>
+                {{ Projects[1] }} &nbsp; <br />2022.03.20 ~ 2023.01.24 <br />
+              </div>
+              <div>삼성 자동화 시스템 선행 개발</div>
+              <br />
+            </div>
+          </div>
+          <br />
+        </li>
         <br />
         <br />
         <li>
-          <h3>{{ Projects[1] }}</h3>
-          <p>2022.10.14 ~ 2023.01.24</p>
-          <p><b>YESCNC 출근 [뚝섬]</b></p>
-          <div>삼성 자동화 시스템 선행 개발</div>
-          <br />
-          <br />
-          <br />
-          <p>
-            MySQL, Flask, Vue 를 통한 로그인 유저 정보 어드민 페이지 구현를
-            구현했습니다.
-          </p>
-          <p>MySQL, Flask, Vue를 통한 프로젝트 생성 페이지를 구현 했습니다.</p>
-          <p>
-            MySQL, Flask, Vue를 통한 유저 정보 관련 설정 페이지를 구현 했습니다.
-          </p>
-          <br />
-          <div>
-            <img src="../assets/TestPortal.png" alt="" /> <br />
-            <img src="../assets/TestPortal02.png" alt="" />
+          <div style="display: flex; justify-content: center">
+            <div>
+              <div>{{ Projects[2] }} &nbsp; <br />2021.01 ~ 2021.02 <br /></div>
+              <div>소노호텔 리뉴얼</div>
+              <br />
+            </div>
           </div>
-
-          <p>2022.03.02 ~ 2022.10.13</p>
-          <p><b>YESCNC 근무 [뚝섬]</b></p>
-          <p><b>Vue, Node, React, Javascript, Html, Css 세미나 강의 진행</b></p>
-        </li>
-        <br /><br />
-        <li>
-          <h3>{{ Projects[2] }}</h3>
-          <p>2023.08.07 ~ 2023.09.06</p>
-          <p><b> 소노 호텔[송파]</b></p>
-          <div>Java와 Vue 를 통한 홈페이지 리뉴얼을 구현 했습니다.</div>
           <br />
-          <div>
-            <img src="../assets/Sono.png" />
-          </div>
         </li>
+        <div>
+          <a
+            href="https://github.com/canyon920?tab=repositories"
+            target="_blank"
+            >Github</a
+          >
+        </div>
       </ul>
     </div>
   </div>
@@ -103,7 +100,7 @@ ul > li {
   list-style: none;
 }
 img {
-  width: 1200px;
+  width: 50%;
 }
 
 .about {
