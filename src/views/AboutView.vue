@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const point = [
   "앱 생성",
@@ -31,8 +31,11 @@ const deepening = [
 const reusability = ["Composable", "Custom Directive", "Plug in"];
 
 let LowerAnswer = ref([]);
+let random_quiz = ref([]);
+
+// Point, Deepening
 function setLowerCase(point, deepening) {
-  LowerAnswer.value.push(point, deepening);
+  while (LowerAnswer.value <= 5) LowerAnswer.value.push(point, deepening);
 }
 
 setLowerCase(point, deepening);
@@ -47,27 +50,82 @@ function ShuffleGame() {
   }
 }
 
-const answer = ["01. Vue에서 DOM을 접근하는 방법은?"];
+let level_now = 0;
+
+const answer_hint = ["Vue에서  DOM을 접근하는 방법은?"];
+
+for (let i = 0; i < answer_hint.length; i++) {
+  console.log("answer Hint", answer_hint[0]);
+}
+
+const resultHint = [];
+
+function shuffleHint() {
+  for (let i = 0; i < point.length; i++) {
+    const j = Math.floor(Math.random() * (answer_hint.length - i));
+    const temp = answer_hint[i];
+    answer_hint[i] = answer_hint[j];
+    answer_hint[j] = temp;
+    resultHint.push(answer_hint[i]);
+  }
+}
+
+let check_point = "";
+
+const checkPoint = () => {
+  const set = () => {
+    for (let i = 0; i < answer_hint.length; i++) {
+      if (deepening[0] === point[0]) {
+        check_point = "다음 단계로 넘어갑니다.";
+        return alert(check_point);
+      } else {
+        check_point = "정답이 일치하지 않습니다.";
+        return alert(check_point);
+      }
+    }
+  };
+  set();
+};
+
+shuffleHint();
 
 function startShuffle() {
+  show_point.value = true;
   ShuffleGame();
+  shuffleHint();
 }
+
+let hasError = ref(false);
+
+// if (LowerAnswer.value) {
+//   const style = {
+//     color: "red",
+//     backgroundColor: "black",
+//   };
+// }
+
+let isActive = ref(false);
+const error = ref(null);
+
+const classObject = computed({
+  active: isActive.value && !error.value,
+  "text-danger": error.value && error.value.type === "fatal",
+});
 
 function take_random_answer() {
   ShuffleGame();
-  for (let i = 0; i < point.length; i++) {
-    const j = Math.floor(Math.random() * (point.length - i));
-    const temp = point[i];
-    point[i] = point[j];
-    point[j] = temp;
-  }
+  isActive = true;
 }
+let show_point = ref(false);
 </script>
 <template>
   <div>
-    <button @click="take_random_answer">게임 시작</button>
+    <button @click="startShuffle">게임 시작</button>
     <table>
-      <thead>
+      <thead
+        class="static"
+        :class="{ active: isActive, 'text-danger': hasError }"
+      >
         <!--        <th>-->
         <!--          <tr></tr>-->
         <!--          <tr></tr>-->
@@ -78,45 +136,23 @@ function take_random_answer() {
       </thead>
       <tbody>
         <tr>
-          <td v-for="point in 5" :key="point">
-            {{ point }}
+          <td
+            v-for="point in point"
+            :key="point"
+            class="static"
+            :class="{ active: isActive, 'text-danger': hasError }"
+          >
+            <div v-if="show_point">
+              <button @click="checkPoint" class="start_button">
+                {{ point }}
+              </button>
+            </div>
           </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
         </tr>
       </tbody>
     </table>
     <div>
-      Answer
+      {{ level_now }} {{ resultHint[0] }}
       <p></p>
     </div>
   </div>
@@ -126,8 +162,21 @@ function take_random_answer() {
 td,
 th,
 tr {
-  width: 50px;
+  width: 100px;
   height: 50px;
-  border: 1px solid black;
+}
+
+.active {
+  background-color: black;
+}
+
+.start_button {
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+.start_button:active {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 </style>
