@@ -22,43 +22,41 @@ set(modal);
 </script>
 <template>
   <button @click="is_skill" class="is_front">Skill Tree</button>
-  <transition name="fade">
-    <div v-if="is_open" class="modal">
-      <div class="modal_wrap">
-        <div class="profile_style">
-          <div class="container">
-            <div class="container__progressbars">
-              <ul class="skill_list">
-                <li>
-                  <div class="progressbar">
-                    <span class="progressbar__text shadow-html">
-                      {{ skill[0] }}</span
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div class="progressbar">
-                    <span class="progressbar__text shadow-css">
-                      {{ skill[1] }}</span
-                    >
-                  </div>
-                </li>
-                <li>
-                  <div class="progressbar">
-                    <span class="progressbar__text shadow-css">
-                      {{ skill[2] }}</span
-                    >
-                  </div>
-                </li>
-              </ul>
-            </div>
+  <div v-if="is_open" class="modal">
+    <div class="modal_wrap">
+      <div class="profile_style">
+        <div class="container">
+          <div class="container__progressbars">
+            <ul class="skill_list">
+              <li>
+                <div class="progressbar">
+                  <span class="progressbar__text shadow-html">
+                    {{ skill[0] }}</span
+                  >
+                </div>
+              </li>
+              <li>
+                <div class="progressbar">
+                  <span class="progressbar__text shadow-css">
+                    {{ skill[1] }}</span
+                  >
+                </div>
+              </li>
+              <li>
+                <div class="progressbar">
+                  <span class="progressbar__text shadow-css">
+                    {{ skill[2] }}</span
+                  >
+                </div>
+              </li>
+            </ul>
           </div>
-          <!-- My social networks (imported from another pen)-->
-          <div id="main-container-social" class="main-container-social"></div>
         </div>
+        <!-- My social networks (imported from another pen)-->
+        <div id="main-container-social" class="main-container-social"></div>
       </div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <style lang="scss">

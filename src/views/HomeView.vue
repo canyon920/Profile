@@ -17,8 +17,12 @@ export default class HomeView extends Vue {
 </script>
 
 <template>
+<<<<<<< HEAD
   <div class="about">
     <HelloWorld />
+=======
+  <div class="About">
+>>>>>>> 36f96f1f6bf9c5d5738c8693aa6f8f47f3d75ed0
     <ProfileComponent />
     <div>
       <h3>Carrer</h3>
@@ -104,12 +108,12 @@ img {
   width: 50%;
 }
 
-.about {
+.""About"" {
   margin: 0 auto;
   text-align: center;
 }
 
-.about > div {
+.""About"" > div {
   margin: 0 auto;
 }
 </style>
