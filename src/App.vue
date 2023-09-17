@@ -4,22 +4,20 @@
     <ul class="HeaderMain">
       <li><router-link to="/"> Home</router-link></li>
       |
-      <li><router-link to="/about">About</router-link></li>
+      <li><router-link to="/About">About</router-link></li>
       |
-      <li><router-link to="/second">second</router-link></li>
-      |
-      <li><router-link to="/third">third</router-link></li>
+      <li><router-link to="/login">Login</router-link></li>
     </ul>
   </nav>
-  <div class="black-bg" v-if="modalOpen === true">
-    <div class="white-bg">
-      <h3>상품 제목입니다.</h3>
-      <p>상품 설명입니다.</p>
-      <button v-on:click="modalOpen = false" class="modal-exit-btn">
-        닫기
-      </button>
-    </div>
-  </div>
+  <!--  <div class="black-bg" v-if="modalOpen === true">-->
+  <!--    <div class="white-bg">-->
+  <!--      <h3>상품 제목입니다.</h3>-->
+  <!--      <p>상품 설명입니다.</p>-->
+  <!--      <button v-on:click="modalOpen = false" class="modal-exit-btn">-->
+  <!--        닫기-->
+  <!--      </button>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <transition name="fade" mode="out-in">
     <router-view />
   </transition>
@@ -93,3 +91,6 @@ ul > li {
   opacity: 0;
 }
 </style>
+<script>
+export default {};
+</script>
