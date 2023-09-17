@@ -6,9 +6,9 @@
       |
       <li><router-link to="/about">About</router-link></li>
       |
-      <li><router-link to="/second">second</router-link></li>
-      |
-      <li><router-link to="/third">third</router-link></li>
+      <!--      <li><router-link to="/second">second</router-link></li>-->
+      <!--      |-->
+      <!--      <li><router-link to="/third">third</router-link></li>-->
     </ul>
   </nav>
   <div class="black-bg" v-if="modalOpen === true">

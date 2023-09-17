@@ -1,21 +1,24 @@
 <script setup>
 import { computed, ref } from "vue";
 
-const point = [
-  "앱 생성",
-  "템플릿 문법",
-  "반응형 기초",
-  "계산된 속성",
-  "클래스와 스타일 바인딩",
-  "조건부 렌더링",
-  "리스트 렌더링",
-  "이벤트 핸들링",
-  "Form 입력 바인딩",
-  "생명주기 훅",
-  "감시자",
-  "템플릿 참조",
-  "컴포넌트 기초",
-];
+const point = {
+  "앱 생성": "Vue에서  DOM을 접근하는 방법은?",
+  "App을 생성하는 방법은?": "npm run serve",
+  "템플릿 문법": `<template></template>`,
+  "반응형 기초": "ref",
+  "계산된 속성": "정답",
+  "클래스와 스타일 바인딩": "정답",
+  "조건부 렌더링": "정답",
+  "리스트 렌더링": "정답",
+  "이벤트 핸들링": "정답",
+  "Form 입력 바인딩": "정답",
+  "생명주기 훅": "정답",
+  "감시자 ": "정답",
+  "템플릿 참조": "정답",
+  "컴포넌트 기초": "정답",
+  "npm run serve": "정답",
+  Template: "정답",
+};
 
 const deepening = [
   "등록",
@@ -28,104 +31,57 @@ const deepening = [
   "비동기 컴포넌트",
 ];
 
-const reusability = ["Composable", "Custom Directive", "Plug in"];
-
 let LowerAnswer = ref([]);
 let random_quiz = ref([]);
 
 // Point, Deepening
-function setLowerCase(point, deepening) {
-  while (LowerAnswer.value <= 5) LowerAnswer.value.push(point, deepening);
-}
+// function setLowerCase(point, deepening) {
+//   while (LowerAnswer.value <= 5) LowerAnswer.value.push(point, deepening);
+// }
 
-setLowerCase(point, deepening);
-console.log(LowerAnswer);
+// setLowerCase(point, deepening);
+// console.log(LowerAnswer);
 
 function ShuffleGame() {
   for (let i = 0; i < point.length; i++) {
-    const j = Math.floor(Math.random() * (point.length - i));
+    const random_index = Math.floor(Math.random() * (point.length - i));
     const temp = point[i];
-    point[i] = point[j];
-    point[j] = temp;
+    point[i] = point[random_index];
+    point[random_index] = temp;
   }
 }
+ShuffleGame();
+console.log(point);
 
-let level_now = 0;
+// function shuffleHint() {
+//   for (let i = 0; i < point.length; i++) {
+//     const j = Math.floor(Math.random() * (answer_hint.length - i));
+//     const temp = answer_hint[i];
+//     answer_hint[i] = answer_hint[j];
+//     answer_hint[j] = temp;
+//     resultHint.push(answer_hint[i]);
+//   }
+// }
+// shuffleHint();
 
-const answer_hint = ["Vue에서  DOM을 접근하는 방법은?"];
-
-for (let i = 0; i < answer_hint.length; i++) {
-  console.log("answer Hint", answer_hint[0]);
+function checkPoint() {
+  return;
 }
 
-const resultHint = [];
-
-function shuffleHint() {
-  for (let i = 0; i < point.length; i++) {
-    const j = Math.floor(Math.random() * (answer_hint.length - i));
-    const temp = answer_hint[i];
-    answer_hint[i] = answer_hint[j];
-    answer_hint[j] = temp;
-    resultHint.push(answer_hint[i]);
-  }
-}
-
-let check_point = "";
-
-const checkPoint = () => {
-  const set = () => {
-    for (let i = 0; i < answer_hint.length; i++) {
-      if (deepening[0] === point[0]) {
-        check_point = "다음 단계로 넘어갑니다.";
-        return alert(check_point);
-      } else {
-        check_point = "정답이 일치하지 않습니다.";
-        return alert(check_point);
-      }
-    }
-  };
-  set();
-};
-
-shuffleHint();
-
-function startShuffle() {
+const startShuffle = (e) => {
+  e.preventDefault();
   show_point.value = true;
   ShuffleGame();
-  shuffleHint();
-}
+  // shuffleHint();
+};
 
-let hasError = ref(false);
-
-// if (LowerAnswer.value) {
-//   const style = {
-//     color: "red",
-//     backgroundColor: "black",
-//   };
-// }
-
-let isActive = ref(false);
-const error = ref(null);
-
-const classObject = computed({
-  active: isActive.value && !error.value,
-  "text-danger": error.value && error.value.type === "fatal",
-});
-
-function take_random_answer() {
-  ShuffleGame();
-  isActive = true;
-}
 let show_point = ref(false);
 </script>
 <template>
   <div>
     <button @click="startShuffle">게임 시작</button>
     <table>
-      <thead
-        class="static"
-        :class="{ active: isActive, 'text-danger': hasError }"
-      >
+      <thead class="static">
         <!--        <th>-->
         <!--          <tr></tr>-->
         <!--          <tr></tr>-->
@@ -136,15 +92,15 @@ let show_point = ref(false);
       </thead>
       <tbody>
         <tr>
-          <td
-            v-for="point in point"
-            :key="point"
-            class="static"
-            :class="{ active: isActive, 'text-danger': hasError }"
-          >
-            <div v-if="show_point">
-              <button @click="checkPoint" class="start_button">
-                {{ point }}
+          <td>
+            <div v-if="show_point" style="display: flex">
+              <button
+                v-for="(qu, index) in point"
+                @click="checkPoint"
+                :key="index"
+                class="start_button"
+              >
+                {{ qu }}
               </button>
             </div>
           </td>
@@ -152,8 +108,7 @@ let show_point = ref(false);
       </tbody>
     </table>
     <div>
-      {{ level_now }} {{ resultHint[0] }}
-      <p></p>
+      <span> 문제 {{ Object.keys(point)[2] }} </span>
     </div>
   </div>
 </template>

@@ -18,6 +18,7 @@ export default class HomeView extends Vue {
 
 <template>
   <div class="about">
+    <HelloWorld />
     <ProfileComponent />
     <div>
       <h3>Carrer</h3>
